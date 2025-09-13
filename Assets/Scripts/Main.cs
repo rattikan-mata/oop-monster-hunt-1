@@ -1,20 +1,38 @@
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    private List<Monster> monsters = new List<Monster>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Hero hero = new Hero("HeroA", 75);
-        Debug.Log($"Hero Name: {hero.name}, Health: {hero.health}, Gold: {hero.gold}");
+        Hero hero = new Hero("The Knight", 20, 15);
 
-        Monster monster1 = new Monster("Orc", 25);
-        Debug.Log($"Monster Name: {monster1.name}, HP: {monster1.health}");
+        Monster monster1 = new Monster("Orc", 20, 5, 15);
+        Monster monster2 = new Monster("Goblin", 15, 4, 10);
+        Monster monster3 = new Monster("Dragon", 300, 30, 100);
 
-        Monster monster2 = new Monster("Goblin", 30);
-        Debug.Log($"Monster Name: {monster2.name}, HP: {monster2.health}");
+        monsters.Add(monster1);
+        monsters.Add(monster2);
+        monsters.Add(monster3);
+        monsters.Add(new Monster("Evil Wing", 20, 10, 30));
 
-        Monster monster3 = new Monster("Dragon", 35);
-        Debug.Log($"Monster Name: {monster3.name}, HP: {monster3.health}");
+        hero.ShowStat();
+
+        foreach (var m in monsters)
+        {
+            m.ShowStat();
+        }
+
+        monster2.ShowStat();
+        hero.Attack(monster2);
+        monster2.ShowStat();
+
+        hero.ShowStat();
+        monster3.Attack(hero);
+        hero.ShowStat();
     }
 }

@@ -425,7 +425,7 @@ Transform:
   m_GameObject: {fileID: 1576826444}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -460,6 +460,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d189ea077ed34f5498461b56c951ba9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hero1: {fileID: 1576826445}
+  monsterPrefabs:
+  - {fileID: 1066760952034667509, guid: 6be81b3defa38de448a3697c1d35de9d, type: 3}
+  - {fileID: 7546449165752105782, guid: 076bc20ec7f0bf743acc86f6e85d283d, type: 3}
+  - {fileID: 6894490672686449591, guid: a002532f44998174f94edaedf52c0d99, type: 3}
+  monsters: []
+  currentMonster: {fileID: 0}
 --- !u!4 &1812437764
 Transform:
   m_ObjectHideFlags: 0

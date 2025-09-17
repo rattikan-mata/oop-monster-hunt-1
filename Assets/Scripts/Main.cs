@@ -4,35 +4,30 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    private List<Monster> monsters = new List<Monster>();
+    public Hero hero1;
+    public List<Monster> monsterPrefabs;
+    public List<Monster> monsters = new List<Monster>();
+    public Monster currentMonster;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Hero hero = new Hero("The Knight", 20, 15);
+        hero1.Init("Yasuo", 50, 10);
+        hero1.ShowStat();
 
-        Monster monster1 = new Monster("Orc", 20, 5, 15);
-        Monster monster2 = new Monster("Goblin", 15, 4, 10);
-        Monster monster3 = new Monster("Dragon", 300, 30, 100);
+        currentMonster = Instatiate(monsterPrefabs[0]);
+        currentMonster.Init("Goblin", 50, 10, 5);
+        Monster.Add(currentMonster);
+        currentMonster.ShowStat();
 
-        monsters.Add(monster1);
-        monsters.Add(monster2);
-        monsters.Add(monster3);
-        monsters.Add(new Monster("Evil Wing", 20, 10, 30));
+        currentMonster = Instatiate(monsterPrefabs[1]);
+        currentMonster.Init("Orc", 100, 15, 10);
+        Monster.Add(currentMonster);
+        currentMonster.ShowStat();
 
-        hero.ShowStat();
-
-        foreach (var m in monsters)
-        {
-            m.ShowStat();
-        }
-
-        monster2.ShowStat();
-        hero.Attack(monster2);
-        monster2.ShowStat();
-
-        hero.ShowStat();
-        monster3.Attack(hero);
-        hero.ShowStat();
+        currentMonster = Instatiate(monsterPrefabs[2]);
+        currentMonster.Init("Dragon", 150, 20, 15);
+        Monster.Add(currentMonster);
+        currentMonster.ShowStat();
     }
 }

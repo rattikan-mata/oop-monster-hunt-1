@@ -15,19 +15,29 @@ public class Main : MonoBehaviour
         hero1.Init("Yasuo", 50, 10);
         hero1.ShowStat();
 
-        currentMonster = Instantiate(monsterPrefabs[0]);
-        currentMonster.Init("Goblin", 50, 10, 5);
-        monsters.Add(currentMonster);
-        currentMonster.ShowStat();
+        SpawnMonster(MonsterType.Goblin);
+        SpawnMonster(MonsterType.Orc);
+        SpawnMonster(MonsterType.Dragon);
 
-        currentMonster = Instantiate(monsterPrefabs[1]);
-        currentMonster.Init("Orc", 100, 15, 10);
-        monsters.Add(currentMonster);
-        currentMonster.ShowStat();
+        currentMonster = monsters[0];
 
-        currentMonster = Instantiate(monsterPrefabs[2]);
-        currentMonster.Init("Dragon", 150, 20, 15);
-        monsters.Add(currentMonster);
+        Debug.Log("\n--- Battle ---");
+        hero1.Attack(currentMonster);
+        currentMonster = monsters[0];
+        hero1.ShowStat();
         currentMonster.ShowStat();
+        currentMonster.Attack(hero1);
+        hero1.Attack(currentMonster, 15);
+        hero1.Heal(25);
+        hero1.EarnGold(currentMonster.LootGold);
+        hero1.ShowStat();
+    }
+
+    public void SpawnMonster(MonsterType monsterType)
+    {
+        Monster monsterPrefab = monsterPrefabs[(int)monsterType];
+        Monster monsterObject = Instantiate(monsterPrefab);
+        monsterObject.Init(monsterType);
+        monsters.Add(monsterObject);
     }
 }

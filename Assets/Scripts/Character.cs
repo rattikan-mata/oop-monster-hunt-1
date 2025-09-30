@@ -17,6 +17,8 @@ public abstract class Character : MonoBehaviour
 
     public int AttackPower { get => attackPower; set => attackPower = value; }
 
+    public Weapon EquippedWeapon { get; private set; }
+
     public void Init(string newName, int newHealth, int attack)
     {
         Name = newName;
@@ -42,5 +44,21 @@ public abstract class Character : MonoBehaviour
 
     public abstract void Attack(Character target);
     public abstract void Attack(Character target, int bonusAttack);
+
+    public virtual void Attack(Character target, Weapon weapon) 
+    {
+        if (weapon != null)
+        {
+            int damage = AttackPower + weapon.BonusDamage;
+            target.TakeDamage(damage);
+            Debug.Log($"{Name} use a {weapon.WeaponName} with Bonus {weapon.BonusDamage} damage, deals total {damage} damage! to {target.Name}.");
+        }
+    }
+
     public abstract void OnDefeated();
+
+    public void EquipWeapon(Weapon weapon)
+    { 
+        EquippedWeapon = weapon;
+    }
 }

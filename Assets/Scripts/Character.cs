@@ -32,16 +32,6 @@ public abstract class Character : MonoBehaviour
         Debug.Log($"{Name} Take {damage} Damage!, Current Health: {Health}");
     }
 
-    public bool IsAlive()
-    {
-        return (Health > 0);
-    }
-
-    public virtual void ShowStat()
-    {
-        Debug.Log($"Name: {Name} | Health: {Health} | Attack Power: {AttackPower}");
-    }
-
     public abstract void Attack(Character target);
     public abstract void Attack(Character target, int bonusAttack);
 
@@ -53,6 +43,16 @@ public abstract class Character : MonoBehaviour
             target.TakeDamage(damage);
             Debug.Log($"{Name} use a {weapon.WeaponName} with Bonus {weapon.BonusDamage} damage, deals total {damage} damage! to {target.Name}.");
         }
+    }
+
+    public virtual void ShowStat()
+    {
+        Debug.Log($"Name: {Name} | Health: {Health} | Attack Power: {AttackPower}");
+    }
+
+    public bool IsAlive()
+    {
+        return (Health > 0);
     }
 
     public abstract void OnDefeated();

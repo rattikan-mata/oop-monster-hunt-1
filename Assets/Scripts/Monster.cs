@@ -5,17 +5,17 @@ public abstract class Monster : Character
     private bool isDefeated;
     public abstract int LootGold { get; }
 
-    public override void ShowStat()
-    {
-        base.ShowStat();
-        Debug.Log($"{Name} Loot Gold: {LootGold}");
-    }
-
     public abstract void Roar();
 
     public int DropReward()
     {
         return LootGold;
+    }
+
+    public override void ShowStat()
+    {
+        base.ShowStat();
+        Debug.Log($"{Name} Loot Gold: {LootGold}");
     }
 
     public override void Attack(Character target)
